@@ -12,5 +12,13 @@
 * "Send" button (by clicking - output data to the console forms in the form of json)
 * "Clear" button (clears the form at the beginning)
 
+#### install depencies:
+```
+ make install
+```
+#### start project:
+```
+ make start
+```
 
 ![img.png](src/assets/img.png)
