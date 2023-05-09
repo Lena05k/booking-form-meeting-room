@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import SelectFloor from './SelectFloor';
 import SelectNegotiation from './SelectNegotiation';
 import Textarea from './Textarea';
@@ -12,20 +11,22 @@ const App = () => {
     setTower: '',
     setFloor: '',
     setNegotiation: '',
-    setHours: new Date(),
-    setTime: '',
+    setDate: '',
+    setTimeInterval: '',
     setComment: '',
   });
+  const handleTimeChange = (e) => {
+    setData({...data, setTimeInterval: e.target.value });
+  };
+  const handleDateChange = (e) => {
+    setData({...data, setDate: e.target.value });
+  };
 
   const handleChangeField = (e) => {
-    const date = e.target.value;
-    const newData = {
-      ...data,
-      setHours: new Date(date),
-    };
+    const newData = { ...data };
     newData[e.target.id] = e.target.value;
     setData(newData);
-    // console.log(newData);
+    console.log(newData);
   };
 
   const handleReset = () => {
@@ -33,29 +34,21 @@ const App = () => {
       setTower: '',
       setFloor: '',
       setNegotiation: '',
-      setHours: '',
-      setTime: '',
+      setDate: '',
+      setTimeInterval: '',
       setComment: '',
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    axios.post('http://localhost:3000/',{ data })
-      .then((response) => {
-        JSON.stringify(response.data);
-        console.log('Object', response.data);
-      })
-      .catch((error)=>{
-        console.log(error);
-      })
+    console.log(JSON.stringify(data));
   };
 
   return (
     <div className="">
         <form
-          onSubmit={(e) => handleSubmit(e)}
+          onSubmit={handleSubmit}
           className="form-block"
         >
           <h1 className="text-center">Бронирование переговорных</h1>
@@ -81,14 +74,15 @@ const App = () => {
             <div className="block-data">
               <input
                 type="date"
-                onChange={handleChangeField}
+                onChange={handleDateChange}
                 className="form-control input-data"
+                value={data.setDate}
               />
             </div>
             <div className="block-time">
               <SelectTime
-                onChange={handleChangeField}
-                value={data.setTime}
+                onChange={handleTimeChange}
+                value={data.setTimeInterval}
               />
             </div>
             <div className="block-textarea">
@@ -112,11 +106,3 @@ const App = () => {
 };
 
 export default App;
-
-
-// setTower: data.setTower,
-//   setFloor: data.setFloor,
-//   setNegotiation: data.setNegotiation,
-//   setHours: data.setHours,
-//   setTime: data.setTime,
-//   setComment: data.setComment,
