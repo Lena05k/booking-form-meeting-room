@@ -9,9 +9,9 @@ const SelectTower = (props) => (
     id="setTower"
     value={props.value}
   >
-    <option className="dropdown-item" key="tower" value="башня">Башня</option>
-    <option className="dropdown-item" key="A" value="A">A</option>
-    <option className="dropdown-item" key="B" value="B">B</option>
+    <option className="dropdown-item" key="tower" value="башня">Выберите башню</option>
+    <option className="dropdown-item" key="A" value="A">Башня A</option>
+    <option className="dropdown-item" key="B" value="B">Башня B</option>
   </select>
 );
 

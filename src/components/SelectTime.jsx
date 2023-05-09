@@ -1,32 +1,27 @@
 import React from 'react';
 
-const SelectTime = (props) => {
-  const interval = 40;
-  const startTime = 9 * 60;
-  const endTime = 22 * 60;
-
-  const options = Array.from(
-    { length: (endTime - startTime) / interval },
-    (v, k) => ({
-      label: `${Math.floor((startTime + k * interval) / 60)}:${((startTime + k * interval) % 60).toString().padStart(2, '0')}`,
-      value: startTime + k * interval,
-    }),
-  );
-
-  return (
-    <select
-      id="setTime"
-      onChange={props.onChange}
-      className="block-select"
-      value={props.value}
-    >
-      {options.map((option) => (
-        <option key={option.value} value={option.value}>
-          {option.label}
+const TimeInterval = () => (
+  <>
+    <option value="">Выберите время</option>
+    {
+      [...Array(10)].map((_, i) => (
+        <option key={i} value={`${i + 10}:00-${i + 11}:00`}>
+          {`${i + 10}:00-${i + 11}:00`}
         </option>
-      ))}
-    </select>
-  );
-};
+      ))
+    }
+  </>
+);
+
+const SelectTime = (props) => (
+  <select
+    id="setTime"
+    onChange={props.onChange}
+    className="block-select"
+    value={props.value}
+  >
+    <TimeInterval />
+  </select>
+);
 
 export default SelectTime;

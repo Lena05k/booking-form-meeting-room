@@ -18,7 +18,7 @@ const SelectedFloors = (props) => (
     id="setFloor"
     value={props.value}
   >
-    <option className="dropdown-item" key="tower" value="tower">Этаж</option>
+    <option className="dropdown-item" key="tower" value="tower">Выберите этаж</option>
     <Number />
   </select>
 );
